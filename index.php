@@ -58,10 +58,9 @@
 											</button>
 											<ul class="dropdown-menu bg-dark mx-auto">
 												<li><a href="logout.php" class="btn btn-outline-danger mb-2">Выйти</a></li>
-												<li><a href="delete.php" class="btn btn-outline-danger">Удалить аккаунт</a></li>
+												<li><a href="vendor/delete.php" class="btn btn-outline-danger">Удалить аккаунт</a></li>
 											</ul>
-										</div>
-								  ';
+										</div>';
 								}
 									
 								else

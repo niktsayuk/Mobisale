@@ -55,15 +55,15 @@
 				<form class="row g-3 col-md-12">
 					<div class="col-md-3">
 						<label class="form-label">Название</label>
-						<input type="text" class="form-control"  >
+						<input type="text" name="name" class="form-control"  >
 					</div>
 					<div class="col-md-3">
 						<label class="form-label">Изображение</label>
-						<input type="" class="form-control" id="exampleInputPassword1">
+						<input type="file" name="image" class="form-control" id="exampleInputPassword1">
 					</div>
 					<div class="col-md-3">
 						<label class="form-label">Цена</label>
-						<input type="text" class="form-control" id="exampleInputPassword1">
+						<input type="text" name="price" class="form-control" id="exampleInputPassword1">
 					</div>
 					<button class="btn btn-primary col-auto">Добавить</button>
 				</form>
