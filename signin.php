@@ -12,15 +12,7 @@
     </head>
 
     <body>
-        <div class="container">
-            <form class="form-signin" method="POST"></form>
-                <h2>Войти</h2>
-
-                <input type="text" name="username" class="form-control" placeholder="username" required>
-                <input type="password" name="password" class="form-control" placeholder="password" required>
-                <button class="btn btn-outline-success mt-3" type="submit">Войти</button>
-        </div>
-<?php 
+    <?php 
             session_start();
             require('connection.php');
 
@@ -46,5 +38,29 @@
             echo "<a href='logout.php' class='btn btn-outline-success mt-3'> Выйти </a>";
             }
 ?>
+        <form class="form-signin" method="POST">
+              <div class="row mb-3">
+                <label for="inputLogin" class="col-sm-2 col-from-label">Логин</label>
+                <div class="col-sm-10">
+                  <input type="text" name="username" class="form-control" id="inputLogin" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-from-label">Пароль</label>
+                <div class="col-sm-10">
+                  <input type="password" name="password" class="form-control" id="inputPassword" required>
+                </div>
+              </div>
+            <fieldset>
+              <div class="form-check">
+                <input type="checkbox" id="gridCheck" class="form-check-input" required>
+                <label for="" class="form-check-label">Соглашаюсь с условиями политики сайта</label>
+              </div>
+            </fieldset>
+            <div class="d-flex ">
+              <button class="btn btn-outline-success mt-3" type="submit">Войти</button>
+            </div>
+
     </body>
 </html>
