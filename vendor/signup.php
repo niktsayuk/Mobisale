@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require_once 'connect.php';
+    require_once 'connectUsers.php';
 
     $full_name = $_POST['full_name'];
     $login = $_POST['login'];
@@ -19,7 +19,7 @@
 
         $password = md5($password);
 
-        mysqli_query($connect, "INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`) VALUES (NULL, '$full_name', '$login', '$email', '$password', '$path')");
+        mysqli_query($connectusers, "INSERT INTO `users` (`id`, `full_name`, `login`, `email`, `password`, `avatar`) VALUES (NULL, '$full_name', '$login', '$email', '$password', '$path')");
 
         $_SESSION['message'] = 'Регистрация прошла успешно!';
         header('Location: ../index.php');
