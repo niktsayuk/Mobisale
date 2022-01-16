@@ -1,7 +1,6 @@
 <?php
+	require_once '../vendor/connect.php';
     session_start();
-	$_SESSION['message'] = '';
-	$_SESSION['product'] = '';
 ?>
 
 <!doctype html>
@@ -21,10 +20,9 @@
 			<nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
 				<div class="container">
 					<a href="" class="navbar-brand">Админ панель</a>
-						<div class="d-flex ">
-
-								<a href="../" class="btn btn-outline-light">Вернуться</a>
-						</div>
+					<div class="d-flex">
+						<a href="../" class="btn btn-outline-light">Вернуться</a>
+					</div>
 				</div>
 			</nav>
 		<!-- Header -->
@@ -43,48 +41,39 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php
-							if ($_SESSION['product']) 
-							{
-								echo '<tr>
-										<td scope="row">'.$_SESSION['product']['id'].'</td>
-										<td>'.$_SESSION['product']['name'].'</td>
-										<td><img src="'.$_SESSION['product']['image'].'"></td>
-										<td>$'.$_SESSION['product']['price'].'</td>
-										<td><a href="deleteproduct.php" class="btn btn-outline-danger">Удалить</a></td>
-									</tr>';
-							}
-							else
-							{
-								echo 'Нет такой записи';
+						<?php
+							$products = mysqli_query($connect, "SELECT * FROM `product`");
+							$products = mysqli_fetch_all($products);
+							foreach($products as $product)
+							{ ?>
+								<tr>
+									<td scope="row"><?=$product[0]?></td>
+									<td><?=$product[1]?></td>
+									<td><img style="height: 100px; wigth: 50px;" src="../<?=$product[2]?>" alt=""></td>
+									<td>$<?=$product[3]?></td>
+									<td><a href="delete_product.php?id=<?= $product[0]?>" class="btn btn-outline-danger">Удалить</a></td>
+								</tr>
+								<?php
 							}
 						?>
 					</tbody>
 				</table>
-				<a href="getproduct.php" class="btn btn-outline-primary me-5">Выгрузить данные</a>
 
 				<h4 class="text-center">Добавление товара</h4>
-				<form action="setproduct.php" method="POST" class="row g-3 col-md-12">
+				<form action="set_product.php" method="POST" enctype="multipart/form-data" class="row g-3 col-md-12">
 					<div class="col-md-3">
 						<label class="form-label">Название</label>
 						<input type="text" name="name" class="form-control"  >
 					</div>
 					<div class="col-md-3">
 						<label class="form-label">Изображение</label>
-						<input type="file" name="image" class="form-control" id="exampleInputPassword1">
+						<input type="file" name="image" class="form-control">
 					</div>
 					<div class="col-md-3">
 						<label class="form-label">Цена</label>
-						<input type="text" name="price" class="form-control" id="exampleInputPassword1">
+						<input type="text" name="price" class="form-control">
 					</div>
 					<button class="btn btn-primary col-auto">Добавить</button>
-
-					<?php
-						if($_SESSION['message'])
-							echo '<p>'.$_SESSION['message'].'</p>';
-						
-						unset($_SESSION['message']);
-					?>
 				</form>
 			</div>
 		</main>

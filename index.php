@@ -1,4 +1,5 @@
 <?php
+require_once 'vendor/connect.php';
     session_start();
 ?>
 
@@ -103,7 +104,18 @@
 							<h4 class="modal-title" id="noWorkLabel">Корзина</h4>
 						</div>
 
-						<div class="modal-body text-center">
+						<div class="modal-body text-center">							
+							<?php
+								$products = mysqli_query($connect, "SELECT * FROM `buy_user`");
+								$products = mysqli_fetch_all($products);
+								foreach($products as $product)
+								{ ?>
+									<div class="text-center">
+										<h5><?=$product[1]?></h5>
+										<img src="<?=$product[2]?>" alt="" class="w-50">
+										<h6 class="text-danger">$<?=$product[3]?></h6>
+									</div>
+							<?php }?>
 						</div>
 
 						<div class="modal-footer">
@@ -113,7 +125,7 @@
 					</div>
 				</div>
 			</div>
-		<!-- Modal #noWork -->
+		<!-- Modal #busket -->
 
 		<main>
 			<!-- Block carousel -->
@@ -235,36 +247,20 @@
 
 				<!-- Block Catalog -->
 					<div class="row bg-dark my-5 text-light p-5">
-					<h2 class="text-center">Каталог</h2>
-
-					<div class="col-md-3 text-center">
-					<h5>Смартфон Apple iPhone 12 256GB (черный)</h5>
-					<img src="img/1.jpg" alt="" class="w-50">
-					<h6 class="text-danger">$1199</h6>
-					<button class="btn btn-secondary">Добавить</button>
-					</div>
-
-					<div class="col-md-3 text-center">
-					<h5>Смартфон Honor 50 6/128GB (изумрудно-зеленый)</h5>
-					<img src="img/2.jpg" alt="" class="w-50">
-					<h6 class="text-danger">$1199</h6>
-					<button class="btn btn-secondary">Добавить</button>
-					</div>
-
-					<div class="col-md-3 text-center">
-					<h5>Смартфон Samsung Galaxy Z Flip3 5G 8/256GB (лавандовый)</h5>
-					<img src="img/3.jpg" alt="" class="w-50">
-					<h6 class="text-danger">$1199</h6>
-					<button class="btn btn-secondary">Добавить</button>
-					</div>
-
-					<div class="col-md-3 text-center">
-					<h5>Смартфон Samsung Galaxy S21+ 5G 8/256GB (серебряный фантом)</h5>
-					<img src="img/4.jpg" alt="" class="w-50">
-					<p>Описание товара</p>
-					<h6 class="text-danger">$1199</h6>
-					<button class="btn btn-secondary">Добавить</button>
-					</div>
+						<h2 class="text-center">Каталог</h2>
+						
+						<?php
+							$products = mysqli_query($connect, "SELECT * FROM `product`");
+							$products = mysqli_fetch_all($products);
+							foreach($products as $product)
+							{ ?>
+								<div class="col-md-3 text-center">
+									<h5><?=$product[1]?></h5>
+									<img src="<?=$product[2]?>" alt="" class="w-50">
+									<h6 class="text-danger">$<?=$product[3]?></h6>
+									<a href="vendor/busket_user.php?id=<?= $product[0]?>" class="btn btn-secondary">Добавить</a>
+								</div>
+						<?php }?>
 					</div>
 				<!-- Block Catalog -->
 			</div>
