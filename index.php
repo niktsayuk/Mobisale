@@ -119,8 +119,8 @@ require_once 'vendor/connect.php';
 						</div>
 
 						<div class="modal-footer">
-							<button class="btn btn-outline-success" data-bs-dismiss="modal" aria-bs-label="close">Купить всё</button>
-							<button class="btn btn-outline-ыусщтвфкн" data-bs-dismiss="modal" aria-bs-label="close">Очистить корзину</button>
+							<a href="vendor/del_buy_user.php" class="btn btn-outline-success">Купить всё</a>
+							<a href="vendor/del_buy_user.php" class="btn btn-outline-secondary">Очистить корзину</a>
 						</div>
 					</div>
 				</div>
