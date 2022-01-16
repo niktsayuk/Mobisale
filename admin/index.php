@@ -1,5 +1,7 @@
 <?php
     session_start();
+	$_SESSION['message'] = '';
+	$_SESSION['product'] = '';
 ?>
 
 <!doctype html>
@@ -41,18 +43,28 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td><a href="" class="btn btn-outline-danger">Удалить</a></td>
-						</tr>
+					<?php
+							if ($_SESSION['product']) 
+							{
+								echo '<tr>
+										<td scope="row">'.$_SESSION['product']['id'].'</td>
+										<td>'.$_SESSION['product']['name'].'</td>
+										<td><img src="'.$_SESSION['product']['image'].'"></td>
+										<td>$'.$_SESSION['product']['price'].'</td>
+										<td><a href="deleteproduct.php" class="btn btn-outline-danger">Удалить</a></td>
+									</tr>';
+							}
+							else
+							{
+								echo 'Нет такой записи';
+							}
+						?>
 					</tbody>
 				</table>
+				<a href="getproduct.php" class="btn btn-outline-primary me-5">Выгрузить данные</a>
 
 				<h4 class="text-center">Добавление товара</h4>
-				<form class="row g-3 col-md-12">
+				<form action="setproduct.php" method="POST" class="row g-3 col-md-12">
 					<div class="col-md-3">
 						<label class="form-label">Название</label>
 						<input type="text" name="name" class="form-control"  >
@@ -66,6 +78,13 @@
 						<input type="text" name="price" class="form-control" id="exampleInputPassword1">
 					</div>
 					<button class="btn btn-primary col-auto">Добавить</button>
+
+					<?php
+						if($_SESSION['message'])
+							echo '<p>'.$_SESSION['message'].'</p>';
+						
+						unset($_SESSION['message']);
+					?>
 				</form>
 			</div>
 		</main>
