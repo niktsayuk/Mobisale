@@ -5,7 +5,7 @@
 
     $id = $_GET['id'];
 
-    $products = mysqli_query($connect, "SELECT * FROM `product` WHERE `id` = '$id'");
+    $products = mysqli_query($connect, "SELECT * FROM `product` WHERE `id_product` = '$id'");
     $products = mysqli_fetch_all($products);
     foreach($products as $product)
     {
